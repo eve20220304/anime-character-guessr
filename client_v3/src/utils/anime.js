@@ -91,7 +91,6 @@ async function getCharacterAppearances(characterId, gameSettings) {
         && (appearance.type === 2)
       );
     }
-    
     if (filteredAppearances.length === 0) {
       return {
         appearances: [],
@@ -105,6 +104,16 @@ async function getCharacterAppearances(characterId, gameSettings) {
     let latestAppearance = -1;
     let earliestAppearance = -1;
     let highestRating = -1;
+    const sourceTagMap = new Map([
+      ['GAL改', '游戏改'],
+      ['轻小说改', '小说改'],
+      ['原创动画', '原创'],
+      ['网文改', '小说改'],
+      ['漫改', '漫画改'],
+      ['漫画改编', '漫画改'],
+      ['游戏改编', '游戏改'],
+      ['小说改编', '小说改']
+    ]);
     const sourceTags = new Set(['原创', '游戏改', '小说改', '漫画改']);
     const sourceTagCounts = new Map();
     const tagCounts = new Map(); // Track cumulative counts for each tag
@@ -145,8 +154,9 @@ async function getCharacterAppearances(characterId, gameSettings) {
 
           details.tags.forEach(tagObj => {
             const [[name, count]] = Object.entries(tagObj);
-            if (name === '轻小说改'){
-              metaTagCounts.set('小说改', (metaTagCounts.get('小说改') || 0) + count);
+            if (sourceTagMap.has(name)) {
+              const mappedTag = sourceTagMap.get(name);
+              sourceTagCounts.set(mappedTag, (sourceTagCounts.get(mappedTag) || 0) + count);
             }
             else if (name != '日本') {
               tagCounts.set(name, (tagCounts.get(name) || 0) + count);
@@ -179,7 +189,9 @@ async function getCharacterAppearances(characterId, gameSettings) {
       .sort((a, b) => Object.values(b)[0] - Object.values(a)[0]);
 
     // Only add one source tag to avoid confusion
-    allMetaTags.add(Object.keys(sortedSourceTags[0])[0]);
+    if (sortedSourceTags.length > 0) {
+      allMetaTags.add(Object.keys(sortedSourceTags[0])[0]);
+    }
 
     for (const tagObj of sortedMetaTags) {
       if (allMetaTags.size >= gameSettings.subjectTagNum) break;
@@ -325,15 +337,14 @@ async function getRandomCharacter(gameSettings) {
       const startYear = gameSettings.startYear;
       const endYear = Math.min(gameSettings.endYear, new Date().getFullYear());
       const randomYear = startYear + Math.floor(Math.random() * (endYear - startYear + 1));
-
       const endDate = new Date(`${randomYear + 1}-01-01`);
       const today = new Date();
       const minDate = new Date(Math.min(endDate.getTime(), today.getTime())).toISOString().split('T')[0];
 
-      total = gameSettings.topNSubjects*(randomYear-startYear+1) + gameSettings.addedSubjects.length;
+      total = gameSettings.topNSubjects*(endYear-startYear+1) + gameSettings.addedSubjects.length;
       randomOffset = Math.floor(Math.random() * total);
-      
-      if (randomOffset >= gameSettings.topNSubjects) {
+
+      if (randomOffset >= gameSettings.topNSubjects*(endYear-startYear+1)) {
         randomOffset = randomOffset - gameSettings.topNSubjects;
         subject = gameSettings.addedSubjects[randomOffset];
       } 
