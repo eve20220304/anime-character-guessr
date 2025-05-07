@@ -236,6 +236,15 @@ function SettingsPopup({ gameSettings, onSettingsChange, onClose, onRestart, hid
                 >
                   MOBA糕手
                 </button>
+                <button 
+                  className="preset-button"
+                  onClick={() => {
+                    alert('老年人享受');
+                    applyPresetConfig('old school');
+                  }}
+                >
+                  old school
+                </button>
               </div>
             </div>
 
