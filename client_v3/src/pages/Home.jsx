@@ -27,11 +27,11 @@ const Home = () => {
         </Link> */}
       </div>
       
-      <UpdateAnnouncement 
+      {/* <UpdateAnnouncement 
         announcements={announcements} 
         defaultExpanded={false}
         initialVisibleCount={1}
-      />
+      /> */}
       
       <div className="home-footer">
         <p>
