@@ -102,7 +102,7 @@ export const gamePresets = {
     characterNum: 15,
     maxAttempts: 10,
     useIndex: true,
-    indexId: "76014",
+    indexId: "76104",
     enableHints: false,
     includeGame: false,
     subjectSearch: false,
