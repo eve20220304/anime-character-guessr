@@ -208,21 +208,21 @@ function SettingsPopup({ gameSettings, onSettingsChange, onClose, onRestart, hid
                 <button 
                   className="preset-button"
                   onClick={async () => {
-                    onSettingsChange('startYear', 2005);
+                    onSettingsChange('startYear', 1999);
                     onSettingsChange('endYear', new Date().getFullYear());
                     onSettingsChange('topNSubjects', 75);
                     onSettingsChange('useSubjectPerYear', false);
                     onSettingsChange('metaTags', ["", "", ""]);
                     onSettingsChange('addedSubjects', []);
-                    onSettingsChange('mainCharacterOnly', true);
+                    onSettingsChange('mainCharacterOnly', false);
                     onSettingsChange('characterNum', 10);
                     onSettingsChange('maxAttempts', 7);
-                    await setIndex("");
+                    await setIndex("76783");
                     onSettingsChange('enableHints', false);
                     onSettingsChange('includeGame', false);
-                    onSettingsChange('subjectSearch', true);
-                    onSettingsChange('subjectTagNum', 8);
-                    onSettingsChange('characterTagNum', 5);
+                    onSettingsChange('subjectSearch', false);
+                    onSettingsChange('subjectTagNum', 1);
+                    onSettingsChange('characterTagNum', 10);
                   }}
                 >
                   瓶子严选
@@ -263,12 +263,12 @@ function SettingsPopup({ gameSettings, onSettingsChange, onClose, onRestart, hid
                     onSettingsChange('mainCharacterOnly', false);
                     onSettingsChange('characterNum', 10);
                     onSettingsChange('maxAttempts', 10);
-                    await setIndex("74622");
+                    await setIndex("76104");
                     onSettingsChange('enableHints', false);
-                    onSettingsChange('includeGame', true);
+                    onSettingsChange('includeGame', false);
                     onSettingsChange('subjectSearch', false);
-                    onSettingsChange('subjectTagNum', 3);
-                    onSettingsChange('characterTagNum', 6);
+                    onSettingsChange('subjectTagNum', 1);
+                    onSettingsChange('characterTagNum', 10);
                   }}
                 >
                   二游高手
