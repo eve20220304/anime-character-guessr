@@ -21,10 +21,10 @@ const Home = () => {
         <Link to="/singleplayer" className="mode-button">
           <h2>单人</h2>
         </Link>
-        <Link to="/multiplayer" className="mode-button">
+        {/* <Link to="/multiplayer" className="mode-button">
           <h2>多人</h2>
           <small>当前房间数: {roomCount}/259</small>
-        </Link>
+        </Link> */}
       </div>
       
       <UpdateAnnouncement 
@@ -38,12 +38,9 @@ const Home = () => {
           一个猜动漫角色的游戏,
           建议使用桌面端浏览器游玩。
           <br/>
-          灵感来源<a href="https://blast.tv/counter-strikle"> BLAST.tv </a>,
-          数据来源<a href="https://bgm.tv/"> Bangumi </a>。<br />
-          <a href="https://space.bilibili.com/87983557">@作者</a>：“感谢 <a href="https://github.com/trim21">Bangumi 管理员</a> 的优化支持，
-          以及各位<a href="https://github.com/kennylimz/anime-character-guessr/graphs/contributors">网友</a>贡献的代码和数据。
-          感谢大家这段时间的热情和支持。”<br/>
-          想找朋友一起玩？QQ群：467740403
+          来源<a href="https://anime-character-guessr.netlify.app/">二刺猿笑传之猜猜呗</a>,
+          数据来源<a href="https://bgm.tv/">Bangumi</a>。<br />
+          暂不开放多人玩法。
         </p>
       </div>
     </div>
